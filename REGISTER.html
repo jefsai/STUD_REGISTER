@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SJC Login</title>
+<style>
+
+  :root{
+    --maroon:#7a0019;
+    --maroon-dark:#5a0013;
+    --gold:#d4af37;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  body{
+    font-family:Arial, sans-serif;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg, var(--maroon), var(--maroon-dark));
+  }
+
+  .login-box{
+    background:#fff;
+    width:100%;
+    max-width:360px;
+    padding:35px 30px;
+    border-radius:10px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+    border-top:5px solid var(--gold);
+  }
+
+  .login-box .badge{
+    text-align:center;
+    margin-bottom:15px;
+  }
+
+  .login-box .badge img{
+    width:60px;
+    height:60px;
+    object-fit:contain;
+  }
+
+  .login-box h1{
+    text-align:center;
+    color:var(--maroon);
+    font-size:20px;
+    margin-bottom:5px;
+  }
+
+  .login-box p.sub{
+    text-align:center;
+    color:#777;
+    font-size:13px;
+    margin-bottom:25px;
+  }
+
+  .login-box label{
+    display:block;
+    font-size:13px;
+    color:#333;
+    margin-bottom:5px;
+    margin-top:15px;
+  }
+
+  .login-box input{
+    width:100%;
+    padding:10px 12px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:14px;
+  }
+
+  .login-box input:focus{
+    outline:none;
+    border-color:var(--maroon);
+  }
+
+  .login-box button{
+    width:100%;
+    margin-top:25px;
+    padding:11px;
+    background:var(--maroon);
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    font-size:15px;
+    cursor:pointer;
+  }
+
+  .login-box button:hover{
+    background:var(--maroon-dark);
+  }
+
+  #errorMsg{
+    color:#c0392b;
+    font-size:13px;
+    text-align:center;
+    margin-top:12px;
+    display:none;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="login-box">
+
+  <div class="badge">
+    <img src="college-logo.jpg" alt="College Logo">
+  </div>
+
+  <h1>SJC STUDENT REGISTRATION SYSTEM</h1>
+  <p class="sub">Login to continue</p>
+
+  <form id="loginForm">
+
+    <label>Username</label>
+    <input type="text" id="username" required autocomplete="username">
+
+    <label>Password</label>
+    <input type="password" id="password" required autocomplete="current-password">
+
+    <div id="errorMsg">Invalid username or password</div>
+
+    <button type="submit">Login</button>
+
+  </form>
+
+</div>
+
+<script>
+
+  // Fixed login credentials -- change these two values as needed
+  const VALID_USERNAME = "admin";
+  const VALID_PASSWORD = "admin@321";
+
+  const form = document.getElementById("loginForm");
+  const errorMsg = document.getElementById("errorMsg");
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const enteredUser = document.getElementById("username").value.trim();
+    const enteredPass = document.getElementById("password").value;
+
+    if(enteredUser === VALID_USERNAME && enteredPass === VALID_PASSWORD){
+      sessionStorage.setItem("sjcLoggedIn", "true");
+      window.location.href = "index.html"; // registration page file name
+    } else {
+      errorMsg.style.display = "block";
+    }
+  });
+
+</script>
+
+</body>
+</html>
